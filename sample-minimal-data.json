@@ -1,0 +1,18 @@
+{
+  "service_provider": "NDT Company",
+  "client": "Test Client",
+  "inspection_date": "2024-01-15",
+  "component_details": "",
+  "calibration_block": "",
+  "sensitivity": "",
+  "ut_set": "",
+  "timebase_linearity": "Accept",
+  "amplification_linearity": "Accept",
+  "procedure": "",
+  "acceptance_criteria": "",
+  "result": "",
+  "pre_test_surface_prep": "",
+  "post_test_surface_cleaning": "",
+  "operator_name": "",
+  "probes": []
+}
