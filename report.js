@@ -42,11 +42,16 @@ document.addEventListener('DOMContentLoaded', function() {
             submitButton.textContent = 'Generating PDF...';
             submitButton.disabled = true;
             
-            // Debug: Log the data being sent (remove in production)
+            // Debug: Log the data being sent
             console.log('Sending report data:', JSON.stringify(reportData, null, 2));
             
-            // Send to external API endpoint - replace with your actual service URL
-            const response = await fetch('https://pdf.rebelcolony.com/generate/ndt-report', {
+            // Use CORS proxy to bypass CORS restrictions
+            // You can replace this with other CORS proxies if needed
+            const corsProxy = 'https://corsproxy.io/?';
+            const apiUrl = 'https://pdf.rebelcolony.com/generate/ndt-report';
+            const proxyUrl = `${corsProxy}${encodeURIComponent(apiUrl)}`;
+            
+            const response = await fetch(proxyUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
