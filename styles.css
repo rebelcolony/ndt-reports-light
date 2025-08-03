@@ -8,11 +8,18 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 form {
   background: #fff;
   padding: 2rem;
-  max-width: 800px;
-  margin: auto;
+  width: 100%;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
@@ -51,6 +58,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 1rem;
+  table-layout: fixed; /* This ensures equal column widths */
 }
 
 table th,
@@ -58,6 +66,16 @@ table td {
   padding: 0.5rem;
   border: 1px solid #ddd;
   text-align: left;
+  overflow: hidden; /* Prevent content from overflowing */
+}
+
+/* Specific styling for inputs inside table cells */
+table td input[type="text"] {
+  width: 100%;
+  padding: 0.4rem;
+  box-sizing: border-box;
+  margin: 0;
+  font-size: 0.9rem; /* Slightly smaller text for table inputs */
 }
 
 fieldset {
@@ -164,6 +182,7 @@ body.dark button:hover {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
+  width: 100%;
 }
 
 #theme-toggle {
@@ -192,4 +211,49 @@ body.dark #theme-toggle {
 
 body.dark #theme-toggle:hover {
   background-color: #555;
+}
+
+/* Logo styling */
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.logo {
+  max-width: 200px;
+  height: auto;
+  transition: filter 0.3s ease;
+}
+
+/* Dark mode adjustment for logo */
+body.dark .logo {
+  /* Apply a filter to make the logo work in dark mode */
+  filter: brightness(0.9) contrast(1.1);
+}
+
+/* Header and intro text */
+.header-controls h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  flex: 1;
+  padding-right: 15px;
+}
+
+.intro-text {
+  margin-bottom: 2rem;
+  text-align: center;
+  width: 100%;
+}
+
+.intro-text p {
+  color: #555;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+body.dark .intro-text p {
+  color: #aaa;
 }

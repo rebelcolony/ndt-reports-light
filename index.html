@@ -1,177 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NDT Reports</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NDT Reports</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <div class="header-controls">
-            <h1>NDT Report Generator</h1>
-            <button id="theme-toggle" type="button" aria-label="Toggle dark mode">
-                <span>🌓</span>
-            </button>
-        </div>
-        
-        <form id="ndt-report-form">
-          <fieldset>
-            <legend><h2>Manual Ultrasonic Inspection Report</h2></legend>
-    
-            <!-- Client & Date -->
-            <div class="form-row">
-                    <div class="form-group">
-                        <label for="service_provider">Service Provider</label>
-                        <input type="text" id="service_provider" name="service_provider" required>
-                    </div>
-    
-                    <div class="form-group">
-                        <label for="client">Client</label>
-                        <input type="text" id="client" name="client" required>
-                    </div>
-                </div>
-    
-            <div class="form-row">
-              <div class="form-group">
-                <label for="inspection_date">Inspection Date</label>
-                <input type="date" id="inspection_date" name="inspection_date" required>
-              </div>
-    
-              <div class="form-group">
-                <label for="inspection_location">Site / Inspection Location</label>
-                <input type="text" id="inspection_location" name="inspection_location" required>
-              </div>
-            </div>
-    
-            <!-- Component Details -->
-            <div class="form-group">
-              <label for="component_details">Component Details</label>
-              <textarea id="component_details" name="component_details" rows="3"></textarea>
-            </div>
-    
-            <!-- Calibration Block -->
-            <div class="form-group">
-              <label for="calibration_block">Calibration Blocks</label>
-              <input type="text" id="calibration_block" name="calibration_block">
-            </div>
-    
-            <!-- Sensitivity -->
-            <div class="form-group">
-              <label for="sensitivity">Sensitivity</label>
-              <input type="text" id="sensitivity" name="sensitivity">
-            </div>
-    
-            <!-- Probe Table -->
-            <fieldset>
-              <legend>Probes</legend>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Angle</th>
-                    <th>Frequency (MHz)</th>
-                    <th>Serial No</th>
-                    <th>Diameter (mm)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <!-- 4 probe rows -->
-                  <tr>
-                    <td><input type="text" name="probe_angle_1"></td>
-                    <td><input type="text" name="probe_frequency_1"></td>
-                    <td><input type="text" name="probe_serial_1"></td>
-                    <td><input type="text" name="probe_diameter_1"></td>
-                  </tr>
-                  <tr>
-                    <td><input type="text" name="probe_angle_2"></td>
-                    <td><input type="text" name="probe_frequency_2"></td>
-                    <td><input type="text" name="probe_serial_2"></td>
-                    <td><input type="text" name="probe_diameter_2"></td>
-                  </tr>
-                  <tr>
-                    <td><input type="text" name="probe_angle_3"></td>
-                    <td><input type="text" name="probe_frequency_3"></td>
-                    <td><input type="text" name="probe_serial_3"></td>
-                    <td><input type="text" name="probe_diameter_3"></td>
-                  </tr>
-                  <tr>
-                    <td><input type="text" name="probe_angle_4"></td>
-                    <td><input type="text" name="probe_frequency_4"></td>
-                    <td><input type="text" name="probe_serial_4"></td>
-                    <td><input type="text" name="probe_diameter_4"></td>
-                  </tr>
-                </tbody>
-              </table>
-            </fieldset>
-    
-            <!-- UT Set -->
-            <div class="form-group">
-              <label for="ut_set">UT Set Type & Serial No</label>
-              <input type="text" id="ut_set" name="ut_set">
-            </div>
-    
-            <!-- Linearity Checks -->
-            <div class="form-group flex-row">
-                    <label>Timebase Linearity Check</label>
-                    <div class="radio-options">
-                        <label><input type="radio" name="timebase_linearity" value="Accept" checked> Accept</label>
-                        <label><input type="radio" name="timebase_linearity" value="Reject"> Reject</label>
-                    </div>
-                </div>
-    
-                <div class="form-group flex-row">
-                    <label>Amplification Linearity Check</label>
-                    <div class="radio-options">
-                        <label><input type="radio" name="amplification_linearity" value="Accept" checked> Accept</label>
-                        <label><input type="radio" name="amplification_linearity" value="Reject"> Reject</label>
-                    </div>
-                </div>
-    
-                <div class="form-row">
-                    <!-- Procedure -->
-                    <div class="form-group">
-                        <label for="procedure">Procedure</label>
-                        <input type="text" id="procedure" name="procedure">
-                    </div>
-        
-                    <!-- Acceptance Criteria -->
-                    <div class="form-group">
-                        <label for="acceptance_criteria">Acceptance Criteria</label>
-                        <input type="text" id="acceptance_criteria" name="acceptance_criteria">
-                    </div>
-                </div>
-    
-            <!-- Result -->
-            <div class="form-group">
-              <label for="result">Result</label>
-              <input type="text" id="result" name="result">
-            </div>
-    
-                <div class="form-group">
-                    <label for="pre_test_surface_prep">Pre-Test Surface Preparation</label>
-                    <input type="text" id="pre_test_surface_prep" name="pre_test_surface_prep"></input>
-                </div>
-    
-                <div class="form-group">
-                    <label for="post_test_surface_cleaning">Post-Test Surface Cleaning</label>
-                    <input type="text" id="post_test_surface_cleaning" name="post_test_surface_cleaning"></input>
-                </div>
-    
-            <!-- Operator Info -->
-            <div class="form-group">
-              <label for="operator_name">Operator Name & Qualifications</label>
-              <input type="text" id="operator_name" name="operator_name">
-            </div>
-    
-            <!-- Submit -->
-            <div class="form-group">
-              <button type="submit" class="btn-submit">Generate PDF Report</button>
-            </div>
-          </fieldset>
-        </form>
+  <div class="container">
+    <div class="logo-container">
+      <img src="logo.png" alt="Company Logo" id="logo" class="logo">
     </div>
     
-    <script src="report.js"></script>
-    <script src="theme-toggle.js"></script>
-  </body>
-  </html>
+    <div class="header-controls">
+      <h1>Free Online NDT Report Generator | Create Professional Ultrasonic Inspection PDFs</h1>
+      <button id="theme-toggle" type="button" aria-label="Toggle dark mode">
+        <span>🌓</span>
+      </button>
+    </div>
+    
+    <div class="intro-text">
+      <p>Generate professional NDT reports in seconds. This free online tool creates properly formatted PDF reports for ultrasonic inspections without installation or registration. Simply fill in your inspection details and download instantly.</p>
+    </div>
+    
+    <form id="ndt-report-form">
+      <fieldset>
+        <legend><h2>Manual Ultrasonic Inspection Report</h2></legend>
+
+        <!-- Client & Date -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="service_provider">Service Provider</label>
+            <input type="text" id="service_provider" name="service_provider" required>
+          </div>
+
+          <div class="form-group">
+            <label for="client">Client</label>
+            <input type="text" id="client" name="client" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="inspection_date">Inspection Date</label>
+            <input type="date" id="inspection_date" name="inspection_date" required>
+          </div>
+
+          <div class="form-group">
+            <label for="inspection_location">Site / Inspection Location</label>
+            <input type="text" id="inspection_location" name="inspection_location" required>
+          </div>
+        </div>
+
+        <!-- Component Details -->
+        <div class="form-group">
+          <label for="component_details">Component Details</label>
+          <textarea id="component_details" name="component_details" rows="3"></textarea>
+        </div>
+
+        <!-- Calibration Block -->
+        <div class="form-group">
+          <label for="calibration_block">Calibration Blocks</label>
+          <input type="text" id="calibration_block" name="calibration_block">
+        </div>
+
+        <!-- Sensitivity -->
+        <div class="form-group">
+          <label for="sensitivity">Sensitivity</label>
+          <input type="text" id="sensitivity" name="sensitivity">
+        </div>
+
+        <!-- Probe Table -->
+        <fieldset>
+          <legend>Probes</legend>
+          <table>
+            <thead>
+              <tr>
+                <th>Angle</th>
+                <th>Frequency (MHz)</th>
+                <th>Serial No</th>
+                <th>Diameter (mm)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- 4 probe rows -->
+              <tr>
+                <td><input type="text" name="probe_angle_1"></td>
+                <td><input type="text" name="probe_frequency_1"></td>
+                <td><input type="text" name="probe_serial_1"></td>
+                <td><input type="text" name="probe_diameter_1"></td>
+              </tr>
+              <tr>
+                <td><input type="text" name="probe_angle_2"></td>
+                <td><input type="text" name="probe_frequency_2"></td>
+                <td><input type="text" name="probe_serial_2"></td>
+                <td><input type="text" name="probe_diameter_2"></td>
+              </tr>
+              <tr>
+                <td><input type="text" name="probe_angle_3"></td>
+                <td><input type="text" name="probe_frequency_3"></td>
+                <td><input type="text" name="probe_serial_3"></td>
+                <td><input type="text" name="probe_diameter_3"></td>
+              </tr>
+              <tr>
+                <td><input type="text" name="probe_angle_4"></td>
+                <td><input type="text" name="probe_frequency_4"></td>
+                <td><input type="text" name="probe_serial_4"></td>
+                <td><input type="text" name="probe_diameter_4"></td>
+              </tr>
+            </tbody>
+          </table>
+        </fieldset>
+
+        <!-- UT Set -->
+        <div class="form-group">
+          <label for="ut_set">UT Set Type & Serial No</label>
+          <input type="text" id="ut_set" name="ut_set">
+        </div>
+
+        <!-- Linearity Checks -->
+        <div class="form-group flex-row">
+          <label>Timebase Linearity Check</label>
+          <div class="radio-options">
+            <label><input type="radio" name="timebase_linearity" value="Accept" checked> Accept</label>
+            <label><input type="radio" name="timebase_linearity" value="Reject"> Reject</label>
+          </div>
+        </div>
+
+        <div class="form-group flex-row">
+          <label>Amplification Linearity Check</label>
+          <div class="radio-options">
+            <label><input type="radio" name="amplification_linearity" value="Accept" checked> Accept</label>
+            <label><input type="radio" name="amplification_linearity" value="Reject"> Reject</label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <!-- Procedure -->
+          <div class="form-group">
+            <label for="procedure">Procedure</label>
+            <input type="text" id="procedure" name="procedure">
+          </div>
+
+          <!-- Acceptance Criteria -->
+          <div class="form-group">
+            <label for="acceptance_criteria">Acceptance Criteria</label>
+            <input type="text" id="acceptance_criteria" name="acceptance_criteria">
+          </div>
+        </div>
+
+        <!-- Result -->
+        <div class="form-group">
+          <label for="result">Result</label>
+          <input type="text" id="result" name="result">
+        </div>
+
+        <div class="form-group">
+          <label for="pre_test_surface_prep">Pre-Test Surface Preparation</label>
+          <input type="text" id="pre_test_surface_prep" name="pre_test_surface_prep"></input>
+        </div>
+
+        <div class="form-group">
+          <label for="post_test_surface_cleaning">Post-Test Surface Cleaning</label>
+          <input type="text" id="post_test_surface_cleaning" name="post_test_surface_cleaning"></input>
+        </div>
+
+        <!-- Operator Info -->
+        <div class="form-group">
+          <label for="operator_name">Operator Name & Qualifications</label>
+          <input type="text" id="operator_name" name="operator_name">
+        </div>
+
+        <!-- Submit -->
+        <div class="form-group">
+          <button type="submit" class="btn-submit">Generate PDF Report</button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  
+  <script src="report.js"></script>
+  <script src="theme-toggle.js"></script>
+</body>
+</html>
