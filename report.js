@@ -45,17 +45,21 @@ document.addEventListener('DOMContentLoaded', function() {
             // Debug: Log the data being sent
             console.log('Sending report data:', JSON.stringify(reportData, null, 2));
             
-            // Use CORS proxy to bypass CORS restrictions
-            // You can replace this with other CORS proxies if needed
-            const corsProxy = 'https://corsproxy.io/?';
+            // Directly use the API URL (without CORS proxy)
             const apiUrl = 'https://pdf.rebelcolony.com/generate/ndt-report';
-            const proxyUrl = `${corsProxy}${encodeURIComponent(apiUrl)}`;
             
-            const response = await fetch(proxyUrl, {
+            // Try a different approach - using a serverless proxy
+            // This is a temporary workaround - a proper solution would be to add CORS headers on your server
+            const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(apiUrl);
+            
+            const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    // Add any required authentication headers
+                    // 'Authorization': 'Bearer YOUR_API_KEY_HERE'
                 },
+                mode: 'cors', // Try with explicit CORS mode
                 body: JSON.stringify(reportData)
             });
             
@@ -75,11 +79,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 alert('PDF report generated successfully!');
             } else {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                const errorText = await response.text();
+                throw new Error(`HTTP error! Status: ${response.status}. Details: ${errorText}`);
             }
         } catch (error) {
             console.error('Error generating PDF:', error);
-            alert('Error generating PDF report. Please try again.');
+            alert(`Error generating PDF report: ${error.message}. Please try again.`);
         } finally {
             // Reset button state
             const submitButton = form.querySelector('button[type="submit"]');
