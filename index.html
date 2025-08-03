@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NDT Reports</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>NDT Report Generator</h1>
+        <div class="header-controls">
+            <h1>NDT Report Generator</h1>
+            <button id="theme-toggle" type="button" aria-label="Toggle dark mode">
+                <span>🌓</span>
+            </button>
+        </div>
         
         <form id="ndt-report-form">
           <fieldset>
@@ -167,5 +172,6 @@
     </div>
     
     <script src="report.js"></script>
+    <script src="theme-toggle.js"></script>
   </body>
   </html>
