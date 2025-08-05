@@ -201,6 +201,28 @@ body.dark button:hover {
   margin: 0;
 }
 
+#theme-toggle img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Show/hide appropriate icon based on theme */
+.light-mode-icon {
+  display: block;
+}
+
+.dark-mode-icon {
+  display: none;
+}
+
+body.dark .light-mode-icon {
+  display: none;
+}
+
+body.dark .dark-mode-icon {
+  display: block;
+}
+
 body.dark #theme-toggle {
   background-color: #444;
 }
